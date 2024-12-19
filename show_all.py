@@ -9,7 +9,7 @@ class ShowAll:
         self.third_coin_data = third_coin_data
         self.fourth_coin_data = fourth_coin_data
 
-    def display_prices(self,second_name,third_name,fourth_name):
+    def display_prices(self, second_name, third_name, fourth_name):
         main_high = self.main_coin_data['High']
         second_high = self.second_coin_data['High']
         third_high = self.third_coin_data['High']
@@ -33,4 +33,3 @@ class ShowAll:
         plt.legend(title="Cryptocurrencies")
         plt.grid(True)
         plt.show()
-

@@ -4,6 +4,8 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from get_coin import GetCoin
 from show_all import ShowAll
+from cmenu import ShowMenu, SelectMenu
+
 
 btc = GetCoin('files/bitcoin.csv')
 btc.load_data()
@@ -21,15 +23,5 @@ xrp = GetCoin('files/xrp.csv')
 xrp.load_data()
 xrp_data = xrp.get_data()
 
-
-# show all
-
-show_all = ShowAll(btc_data, btcg_data, bnb_data, xrp_data)
-show_all.plot_prices('Bitcoin Gold', 'BNB','XRP')
-
-prices = show_all.display_prices("Bitcoin Gold", "BNB", "XRP")
-std_values = prices.std()
-print("diviation:\n", std_values)
-
-
-
+ShowMenu()  # Show the menu
+SelectMenu(btc_data, btcg_data, bnb_data, xrp_data)
