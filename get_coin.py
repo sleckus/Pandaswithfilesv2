@@ -6,14 +6,12 @@ class GetCoin:
         self.data = None
 
     def load_data(self):
-        try:
-            self.data = pd.read_csv(self.file_path, parse_dates=['Date'], index_col='Date')
-        except FileNotFoundError:
-            raise FileNotFoundError(f"The file at {self.file_path} does not exist.")
-        except Exception as e:
-            raise Exception(f"An error occurred while loading the data: {e}")
+        self.data = pd.read_csv(self.file_path)
+
+        if 'Date' in self.data.columns:
+            self.data['Date'] = pd.to_datetime(self.data['Date'], errors='coerce')
+            self.data = self.data.dropna(subset=['Date'])  # Drop rows with invalid dates
+            self.data = self.data.set_index('Date')
 
     def get_data(self):
-        if self.data is None:
-            raise ValueError("Data has not been loaded. Call 'load_data' first.")
         return self.data
